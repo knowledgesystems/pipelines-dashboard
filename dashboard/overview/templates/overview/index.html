@@ -1,0 +1,121 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'overview/style.css' %}" />
+    </head>
+    <body>
+        <div>
+            <h1>Import Summaries</h1>
+        </div>
+
+        <!-- DMP IMPORTS SUMMARY BLOCK -->
+        <div id="dmp-imports-main">
+            <div><h2>DMP Imports Summary</h2></div>
+            <div>
+                {% if studies_imported %}
+                <table class="table">
+                    <tr>
+                        <th>study id</th>
+                        <th>import date</th>
+                        <th>import status</th>
+                        <th>link / message</th>
+                    </tr>
+                    {% for study in studies_imported %}
+                        {% if study.import_status %}
+                            <tr class="success">
+                        {% else %}
+                            <tr class="danger">
+                        {% endif %}
+                                <td>{{study.cancer_study_identifier}}</td>
+                                <td>{{study.import_date}}</td>
+                                {% if study.import_status %}
+                                    <td>SUCCESS</td>
+                                    <td><a href="{{study.cbio_base_url}}/study/summary?id={{study.cancer_study_identifier}}">{{study.cbio_base_url}}/study/summary?id={{study.cancer_study_identifier}}</a></td>
+                                {% else %}
+                                    <td>FAILURE</td>
+                                    <td>{{study.import_details}}</td>
+                                {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                    <p>No studies imported</p>
+                {% endif %}
+            </div>
+        </div> <!-- END DMP IMPORTS SUMMARY BLOCK -->
+
+        <!-- BIC/CMO IMPORTS SUMMARY BLOCK -->
+        <div id="cmo-bic-imports-main">
+            <div><h2>CMO/BIC Imports Summary</h2></div>
+            <div>
+                {% if studies_imported %}
+                <table class="table">
+                    <tr>
+                        <th>study id</th>
+                        <th>import date</th>
+                        <th>import status</th>
+                        <th>link / message</th>
+                    </tr>
+                    {% for study in studies_imported %}
+                        {% if study.import_status %}
+                            <tr class="success">
+                        {% else %}
+                            <tr class="danger">
+                        {% endif %}
+                                <td>{{study.cancer_study_identifier}}</td>
+                                <td>{{study.import_date}}</td>
+                                {% if study.import_status %}
+                                    <td>SUCCESS</td>
+                                    <td><a href="{{study.cbio_base_url}}/study/summary?id={{study.cancer_study_identifier}}">{{study.cbio_base_url}}/study/summary?id={{study.cancer_study_identifier}}</a></td>
+                                {% else %}
+                                    <td>FAILURE</td>
+                                    <td>{{study.import_details}}</td>
+                                {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                    <p>No studies imported</p>
+                {% endif %}
+            </div>
+        </div> <!-- END BIC/CMO IMPORTS SUMMARY BLOCK -->
+
+        <!-- PUBLIC IMPORTS SUMMARY BLOCK -->
+        <div id="public-imports-main">
+            <div><h2>Public Imports Summary</h2></div>
+            <div>
+                {% if studies_imported %}
+                <table class="table">
+                    <tr>
+                        <th>study id</th>
+                        <th>import date</th>
+                        <th>import status</th>
+                        <th>link / message</th>
+                    </tr>
+                    {% for study in studies_imported %}
+                        {% if study.import_status %}
+                            <tr class="success">
+                        {% else %}
+                            <tr class="danger">
+                        {% endif %}
+                                <td>{{study.cancer_study_identifier}}</td>
+                                <td>{{study.import_date}}</td>
+                                {% if study.import_status %}
+                                    <td>SUCCESS</td>
+                                    <td><a href="{{study.cbio_base_url}}/study/summary?id={{study.cancer_study_identifier}}">{{study.cbio_base_url}}/study/summary?id={{study.cancer_study_identifier}}</a></td>
+                                {% else %}
+                                    <td>FAILURE</td>
+                                    <td>{{study.import_details}}</td>
+                                {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                    <p>No studies imported</p>
+                {% endif %}
+            </div>
+        </div> <!-- END PUBLIC IMPORTS SUMMARY BLOCK -->
+    </body>
+</html>
